@@ -103,7 +103,9 @@ alias scrupsidedown='xrandr -o inverted'
 alias df='df -H'
 alias du='du -ch'
 
-alias caylent-dev-1='ssh ubuntu@dev-1.prod.caylent.io'
+alias caylent-dev-1='ssh ubuntu@dev-1.staging.caylent.io'
+alias caylent-docker-1='ssh ubuntu@docker-1.prod.caylent.io'
+
 alias caylent-staging-docker-1='ssh ubuntu@docker-1.staging.caylent.io'
 alias caylent-staging-docker-2='ssh ubuntu@docker-2.staging.caylent.io'
 
