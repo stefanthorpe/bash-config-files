@@ -103,6 +103,14 @@ alias scrresnorm='xrandr --output eDP1 --mode 1920x1080'
 alias scrreslow='xrandr --output eDP1 --mode 1280x720'
 alias scrlist='xrandr -q'
 
+##toggle laptop mode
+alias tablet='keyboard-off && scrleft'
+alias tent='keyboard-off && scrupsidedown'
+alias laptop='keyboard-on && scrnormal'
+
+##refresh the bash config for current session
+alias bashreload='source ~/.bashrc'
+
 ## default human readable disk info ##
 alias df='df -H'
 alias du='du -ch'
@@ -113,7 +121,10 @@ alias caylent-docker-1='ssh ubuntu@docker-1.prod.caylent.io'
 alias caylent-staging-docker-1='ssh ubuntu@docker-1.staging.caylent.io'
 alias caylent-staging-docker-2='ssh ubuntu@docker-2.staging.caylent.io'
 
-alias tink='~/api/artisan tinker'
+alias tink='docker exec -it local /usr/share/nginx/html/artisan tinker'
+alias dc-local-exec='docker exec -it local '
+alias dc-local-logs='docker logs local'
+alias dc-local-shell="docker exec -it local bash -c 'cd /usr/share/nginx/html; exec \"${SHELL:-sh}\"'"
 alias stmux='TERM=screen-256color-bce tmux attach -t stefan'
 #####################################
 ##          Functions              ##
