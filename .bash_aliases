@@ -104,9 +104,9 @@ alias scrreslow='xrandr --output eDP1 --mode 1280x720'
 alias scrlist='xrandr -q'
 
 ##toggle laptop mode
-alias tablet='keyboard-off && scrleft'
-alias tent='keyboard-off && scrupsidedown'
-alias laptop='keyboard-on && scrnormal'
+alias tablet='keyboard-off && scrleft && scrreslow'
+alias tent='keyboard-off && scrupsidedown && scrreslow'
+alias laptop='keyboard-on && scrnormal && scrreslow'
 
 ##refresh the bash config for current session
 alias bashreload='source ~/.bashrc'
