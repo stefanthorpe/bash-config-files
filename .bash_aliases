@@ -98,6 +98,10 @@ alias scrnormal='xrandr -o normal'
 alias scrright='xrandr -o right'
 alias scrleft='xrandr -o left'
 alias scrupsidedown='xrandr -o inverted'
+alias scrreshigh='xrandr --output eDP1 --mode 3200x1800'
+alias scrresnorm='xrandr --output eDP1 --mode 1920x1080'
+alias scrreslow='xrandr --output eDP1 --mode 1280x720'
+alias scrlist='xrandr -q'
 
 ## default human readable disk info ##
 alias df='df -H'
