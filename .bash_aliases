@@ -6,6 +6,7 @@ if [ $UID -ne 0 ]; then
     # install with apt-get
     alias apt-get="sudo apt-get"
     alias install="sudo apt-get install"
+    alias remove="sudo apt-get remove"
     alias updatey="sudo apt-get --yes"
     alias upgrade='sudo apt-get upgrade'
 fi
@@ -107,6 +108,7 @@ alias scrlist='xrandr -q'
 alias tablet='keyboard-off && scrleft && scrreslow'
 alias tent='keyboard-off && scrupsidedown && scrreslow'
 alias laptop='keyboard-on && scrnormal && scrreslow'
+alias eradesk='tent && xrandr --output HDMI1 --auto && xrandr --output HDMI1 --right-of eDP1'
 
 ##refresh the bash config for current session
 alias bashreload='source ~/.bashrc'
