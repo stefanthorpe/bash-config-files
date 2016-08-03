@@ -6,6 +6,7 @@ if [ $UID -ne 0 ]; then
     # install with apt-get
     alias apt-get="sudo apt-get"
     alias install="sudo apt-get install"
+    alias remove="sudo apt-get remove"
     alias updatey="sudo apt-get --yes"
     alias upgrade='sudo apt-get upgrade'
 fi
@@ -98,11 +99,16 @@ alias scrnormal='xrandr -o normal'
 alias scrright='xrandr -o right'
 alias scrleft='xrandr -o left'
 alias scrupsidedown='xrandr -o inverted'
+alias scrreshigh='xrandr --output eDP1 --mode 3200x1800'
+alias scrresnorm='xrandr --output eDP1 --mode 1920x1080'
+alias scrreslow='xrandr --output eDP1 --mode 1280x720'
+alias scrlist='xrandr -q'
 
 ##toggle laptop mode
-alias tablet='keyboard-off && scrleft'
-alias tent='keyboard-off && scrupsidedown'
-alias laptop='keyboard-on && scrnormal'
+alias tablet='keyboard-off && scrleft && scrreslow'
+alias tent='keyboard-off && scrupsidedown && scrreslow'
+alias laptop='keyboard-on && scrnormal && scrreslow'
+alias eradesk='tent && xrandr --output HDMI1 --auto && xrandr --output HDMI1 --right-of eDP1'
 
 ##refresh the bash config for current session
 alias bashreload='source ~/.bashrc'
