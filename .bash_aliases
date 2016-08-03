@@ -122,6 +122,7 @@ alias dc-local-exec='docker exec -it local '
 alias dc-local-logs='docker logs local'
 alias dc-local-shell="docker exec -it local bash -c 'cd /usr/share/nginx/html; exec \"${SHELL:-sh}\"'"
 alias stmux='TERM=screen-256color-bce tmux attach -t stefan'
+alias demotmux='TERM=screen-256color-bce tmux attach -t demo'
 #####################################
 ##          Functions              ##
 #####################################
@@ -144,4 +145,7 @@ function gap()
     git commit -m "$1"
     git push
 }
-
+function dc-tail()
+{
+    docker exec -it $1 tail -n 1000 -f /usr/share/nginx/html/storage/logs/laravel.log
+}
