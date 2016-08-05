@@ -25,11 +25,10 @@ alias cd..='cd ..'
  
 ## a quick way to get out of current directory ##
 alias ..='cd ..'
-alias ...='cd ../../../'
-alias ....='cd ../../../../'
-alias .....='cd ../../../../'
+alias ...='cd ../../'
+alias .3='cd ../../../'
 alias .4='cd ../../../../'
-alias .5='cd ../../../../..'
+alias .5='cd ../../../../../'
 
 # handy short cuts 
 alias h='history'
@@ -108,8 +107,14 @@ alias scrlist='xrandr -q'
 alias tablet='keyboard-off && scrleft && scrreslow'
 alias tent='keyboard-off && scrupsidedown && scrreslow'
 alias laptop='keyboard-on && scrnormal && scrreslow'
-alias eradesk='tent && xrandr --output HDMI1 --auto && xrandr --output HDMI1 --right-of eDP1'
+alias eradesk='tent && xrandr --output HDMI1 --auto && xrandr --output HDMI1 --left-of eDP1'
+alias asustent='tent && xrandr --output DVI-I-1 --auto && xrandr --output DVI-I-1 --right-of eDP1'
+alias asuslaptop='laptop && xrandr --output DVI-I-1 --auto && xrandr --output DVI-I-1 --right-of eDP1'
 
+alias asustentleft='tent && xrandr --output DVI-I-1 --auto && xrandr --output DVI-I-1 --left-of eDP1'
+alias asuslaptopleft='laptop && xrandr --output DVI-I-1 --auto && xrandr --output DVI-I-1 --left-of eDP1'
+alias commonsdesk='asustent'
+alias commonsdesklaptop='asuslaptop'
 ##refresh the bash config for current session
 alias bashreload='source ~/.bashrc'
 
@@ -122,12 +127,17 @@ alias caylent-docker-1='ssh ubuntu@docker-1.prod.caylent.io'
 
 alias caylent-staging-docker-1='ssh ubuntu@docker-1.staging.caylent.io'
 alias caylent-staging-docker-2='ssh ubuntu@docker-2.staging.caylent.io'
+alias caylent-blog='ssh ubuntu@54.88.177.184'
 
 alias tink='docker exec -it local /usr/share/nginx/html/artisan tinker'
 alias dc-local-exec='docker exec -it local '
 alias dc-local-logs='docker logs local'
 alias dc-local-shell="docker exec -it local bash -c 'cd /usr/share/nginx/html; exec \"${SHELL:-sh}\"'"
+alias dc-local-laravel-log="docker exec -it local bash -c 'tail -n 200 -f -s 1 /usr/share/nginx/html/storage/logs/laravel.log'"
+alias dc-rm-old-containers="docker rm $(docker ps -a -q)"
+alias dc-rm-images="docker rmi $(docker images -q --filter 'dangling=true')"
 alias stmux='TERM=screen-256color-bce tmux attach -t stefan'
+alias clearchat='ClearChat & disown'
 #####################################
 ##          Functions              ##
 #####################################
