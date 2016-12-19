@@ -181,6 +181,11 @@ function dc-tail()
     docker exec -it $1 tail -n 1000 -f /usr/share/nginx/html/storage/logs/laravel.log
 }
 
+function dc-shell()
+{
+    docker exec -it $1 bash -c 'cd /usr/share/nginx/html; exec "${SHELL:-sh}"'
+}
+
 function gap-dev-1()
 {
     git add -A
