@@ -133,10 +133,11 @@ alias tink='docker exec -it local /usr/share/nginx/html/artisan tinker'
 alias dc-local-exec='docker exec -it local '
 alias dc-local-logs='docker logs local'
 alias dc-local-shell="docker exec -it local bash -c 'cd /usr/share/nginx/html; exec \"${SHELL:-sh}\"'"
-alias dc-local-laravel-log="docker exec -it local bash -c 'tail -n 200 -f -s 1 /usr/share/nginx/html/storage/logs/laravel.log'"
+alias dc-local-laravel-log="docker exec -it local bash -c 'tail -n 5000 -f -s 1 /usr/share/nginx/html/storage/logs/laravel.log'"
 alias dc-rm-old-containers="docker rm $(docker ps -a -q)"
 alias dc-rm-images="docker rmi $(docker images -q --filter 'dangling=true')"
 alias stmux='TERM=screen-256color-bce tmux attach -t stefan'
+alias juliatmux='tmux attach -t julia'
 alias demotmux='TERM=screen-256color-bce tmux attach -t demo'
 alias clearchat='ClearChat & disown'
 #####################################
