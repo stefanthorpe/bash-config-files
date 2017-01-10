@@ -182,7 +182,11 @@ function dc-tail()
 }
 function dc-tail-grep()
 {
-    docker exec -it $1 tail -n 10000 -f /usr/share/nginx/html/storage/logs/laravel.log | grep $2
+    if [ -z $3 ]; then
+        docker exec -it $1 tail -n 10000 -f /usr/share/nginx/html/storage/logs/laravel.log | grep -A 20 $2
+    else        
+        docker exec -it $1 tail -n 10000 -f /usr/share/nginx/html/storage/logs/laravel.log | grep -A $3 $2
+    fi
 }
 
 function dc-shell()
