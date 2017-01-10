@@ -179,6 +179,10 @@ function dc-tail()
 {
     docker exec -it $1 tail -n 1000 -f /usr/share/nginx/html/storage/logs/laravel.log
 }
+function dc-tail-grep()
+{
+    docker exec -it $1 tail -n 10000 -f /usr/share/nginx/html/storage/logs/laravel.log | grep $2
+}
 
 function gap-dev-1()
 {
