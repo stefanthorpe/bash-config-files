@@ -129,11 +129,11 @@ alias du='du -ch'
 
 #ssh short cuts
 alias ssh-personal='ssh -i ~/.ssh/github-personal'
-alias caylent-dev-1='ssh ubuntu@dev-1.staging.caylent.io'
-alias caylent-docker-1='ssh ubuntu@docker-1.prod.caylent.io'
+alias caylent-dev-1='ssh dev-1.staging.caylent.io'
+alias caylent-docker-1='ssh docker-1.prod.caylent.io'
 
-alias caylent-staging-docker-1='ssh ubuntu@docker-1.staging.caylent.io'
-alias caylent-staging-docker-2='ssh ubuntu@docker-2.staging.caylent.io'
+alias caylent-staging-docker-1='ssh docker-1.staging.caylent.io'
+alias caylent-staging-docker-2='ssh docker-2.staging.caylent.io'
 alias caylent-blog='ssh ubuntu@54.88.177.184'
 alias api='cd ~/caylent/api'
 alias api-vi='api && vi'
@@ -207,4 +207,12 @@ function dc-cleanup()
     docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
     docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
     docker rmi $(docker images --filter "before=$1" -q 2>/dev/null) 2>/dev/null
+}
+function dc-build-run()
+{
+    docker build -t caylent-api-$1 . && docker run -dp 80:80 --name caylent-api-$1 caylent-api-$1
+}
+function dc-build-stop-run()
+{
+    docker build -t caylent-api-$1 . && docker stop caylent-api-$2 && docker run -dp 80:80 --name caylent-api-$1 caylent-api-$1
 }
