@@ -1767,6 +1767,7 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 " ===========================================================================
 let g:syntastic_python_flake8_args='--ignore=E402'
 let python_highlight_all = 1
+let g:python_pep8_indent_multiline_string = 1
 nnoremap <Leader>wn :match ExtraWhitespace /^\s* \s*\<Bar>\s\+$/<CR>
 nnoremap <Leader>wf :match<CR>
 highlight ExtraWhitespace ctermbg=0 guibg=0
