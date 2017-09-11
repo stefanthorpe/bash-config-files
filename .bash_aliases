@@ -36,7 +36,8 @@ alias hg='history | grep'
 alias j='jobs -l'
 
 ## Colorize the grep command output for ease of use (good for log files)##
-alias grep='grep --color=auto'
+alias grep='grep -n --color=auto'
+alias grepNoCount='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
@@ -150,10 +151,20 @@ alias juliatmux='tmux attach -t julia'
 alias demotmux='TERM=screen-256color-bce tmux attach -t demo'
 alias clearchat='ClearChat & disown'
 
+#Use a docker build to push the frontend to an S3 need to append build name to the end
+alias frontend-push-st="docker run -e BUCKET=$BUCKET -e ACCESS_KEY=$ACCESS_KEY -e SECRET_KEY=$SECRET_KEY -e REGION=$REGION -it "
+alias frontend-push-prod="docker run -e BUCKET=$BUCKETPROD -e ACCESS_KEY=$ACCESSPROD -e SECRET_KEY=$SECRETPROD -e REGION=$REGION -it "
+alias frontend-push-stage="docker run -e BUCKET=$BUCKETSTAG -e ACCESS_KEY=$ACCESSSTAG -e SECRET_KEY=$SECRETSTAG -e REGION=$REGION -it " 
 
 alias vpn-electronifie='sudo openvpn --config /home/st/caylent/clients/electronifie/vpn/client.ovpn --auth-user-pass ~/.openvpn/electronifie'
 alias vpn-london='cd /home/st/ipvanish && sudo openvpn --config /home/st/ipvanish/ipvanish-UK-London-lon-a01.ovpn --auth-user-pass ~/.openvpn/ipvanish'
 alias caylent-starter='starter -g dockerfile,service,docker-compose -templates /home/st/gocode/src/github.com/caylent/starter/templates/'
+
+# python shortcuts
+alias venv='source ./bin/activate'
+alias deactivate='deactivate'
+alias s3pub='s3pypi --bucket repo.staging.caylent.io'
+alias pip-install='pip install -r requirements.txt'
 #####################################
 ##          Functions              ##
 #####################################
@@ -216,3 +227,7 @@ function dc-build-stop-run()
 {
     docker build -t caylent-api-$1 . && docker stop caylent-api-$2 && docker run -dp 80:80 --name caylent-api-$1 caylent-api-$1
 }
+
+#Config for pythons virtualenvwrapper
+VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3' # This needs to be placed before the virtualenvwrapper command
+source /usr/local/bin/virtualenvwrapper.sh
