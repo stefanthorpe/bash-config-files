@@ -15,7 +15,7 @@ else
   let $GIT_SSL_NO_VERIFY = 'true'
 endif
 
-" Base Plugins
+" Base Plugins Managed by vim-plug. To install Open vim :PlugInstall
 Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity']      }
 Plug 'junegunn/vim-emoji'
 Plug 'junegunn/vim-pseudocl'
@@ -1530,7 +1530,7 @@ augroup vimrc
   au BufNewFile,BufRead Dockerfile*         set filetype=dockerfile
 
   " http://vim.wikia.com/wiki/Highlight_unwanted_spaces
-  au BufNewFile,BufRead,InsertLeave * silent! match ExtraWhitespace /\s\+$/
+  au BufNewFile,BufRead,InsertLeave * silent! match ExtraWhitespace /\s\+\%#\@<!$/
   au InsertEnter * silent! match ExtraWhitespace /\s\+\%#\@<!$/
 
   " Unset paste on InsertLeave
@@ -1762,12 +1762,14 @@ let g:go_list_type = "quickfix"
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
-
 " ===========================================================================
-" vim-python config
+" vim python config
 " ===========================================================================
 let g:syntastic_python_flake8_args='--ignore=E402'
-
+let python_highlight_all = 1
+nnoremap <Leader>wn :match ExtraWhitespace /^\s* \s*\<Bar>\s\+$/<CR>
+nnoremap <Leader>wf :match<CR>
+highlight ExtraWhitespace ctermbg=0 guibg=0
 
 " ===========================================================================
 " vim-yaml config
