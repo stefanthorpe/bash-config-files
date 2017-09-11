@@ -118,3 +118,10 @@ fi
 
 export PATH=~/.local/bin:$PATH
 complete -C '~/.local/bin/aws_completer' aws
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /home/st/node_modules/tabtab/.completions/serverless.bash ] && . /home/st/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /home/st/node_modules/tabtab/.completions/sls.bash ] && . /home/st/node_modules/tabtab/.completions/sls.bash
