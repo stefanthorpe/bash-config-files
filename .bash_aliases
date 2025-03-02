@@ -108,20 +108,20 @@ alias scrreslow='xrandr --output eDP1 --mode 1280x720'
 alias scrlist='xrandr -q'
 
 ##toggle laptop mode
-alias tablet='keyboard-off && scrleft && scrresnorm'
-alias tent='keyboard-off && scrupsidedown && scrresnorm'
-alias laptop='keyboard-on && scrnormal && scrresnorm'
-alias eradesk='tent && xrandr --output HDMI1 --auto && xrandr --output HDMI1 --left-of eDP1'
-alias lgabovetent='xrandr --output HDMI1 --auto  --pos 0x0 --mode 2560x1080 --output eDP1 --rotate inverted --mode 1920x1080 --pos 320x1080'
-alias lgabovelap='xrandr --output HDMI1 --auto  --pos 0x0 --mode 2560x1080 --output eDP1 --rotate normal --mode 1920x1080 --pos 320x1080'
-alias home='xrandr --output HDMI1 --auto --pos 640x0 --mode 2560x1080 --output eDP1 --rotate inverted --mode 1920x1080 --pos 0x1080 --output DVI-I-1 --pos 1920x1080'
-alias asustent='tent && xrandr --output DVI-I-1 --auto && xrandr --output DVI-I-1 --right-of eDP1'
-alias asuslaptop='laptop && xrandr --output DVI-I-1 --auto && xrandr --output DVI-I-1 --right-of eDP1'
+#alias tablet='keyboard-off && scrleft && scrresnorm'
+#alias tent='keyboard-off && scrupsidedown && scrresnorm'
+#alias laptop='keyboard-on && scrnormal && scrresnorm'
+#alias eradesk='tent && xrandr --output HDMI1 --auto && xrandr --output HDMI1 --left-of eDP1'
+#alias lgabovetent='xrandr --output HDMI1 --auto  --pos 0x0 --mode 2560x1080 --output eDP1 --rotate inverted --mode 1920x1080 --pos 320x1080'
+#alias lgabovelap='xrandr --output HDMI1 --auto  --pos 0x0 --mode 2560x1080 --output eDP1 --rotate normal --mode 1920x1080 --pos 320x1080'
+#alias home='xrandr --output HDMI1 --auto --pos 640x0 --mode 2560x1080 --output eDP1 --rotate inverted --mode 1920x1080 --pos 0x1080 --output DVI-I-1 --pos 1920x1080'
+#alias asustent='tent && xrandr --output DVI-I-1 --auto && xrandr --output DVI-I-1 --right-of eDP1'
+#alias asuslaptop='laptop && xrandr --output DVI-I-1 --auto && xrandr --output DVI-I-1 --right-of eDP1'
 
-alias asustentleft='tent && xrandr --output DVI-I-1 --auto && xrandr --output DVI-I-1 --left-of eDP1'
-alias asuslaptopleft='laptop && xrandr --output DVI-I-1 --auto && xrandr --output DVI-I- --left-of eDP1'
-alias commonsdesk='asustent'
-alias commonsdesklaptop='asuslaptop'
+#alias asustentleft='tent && xrandr --output DVI-I-1 --auto && xrandr --output DVI-I-1 --left-of eDP1'
+#alias asuslaptopleft='laptop && xrandr --output DVI-I-1 --auto && xrandr --output DVI-I- --left-of eDP1'
+#alias commonsdesk='asustent'
+#alias commonsdesklaptop='asuslaptop'
 ##refresh the bash config for current session
 alias bash-reload='source ~/.bashrc'
 
@@ -130,19 +130,19 @@ alias df='df -H'
 alias du='du -ch'
 
 #ssh short cuts
-alias ssh-personal='ssh -i ~/.ssh/github-personal'
-alias caylent-dev-1='ssh dev-1.staging.caylent.io'
-alias caylent-docker-1='ssh docker-1.prod.caylent.io'
+#alias ssh-personal='ssh -i ~/.ssh/github-personal'
+#alias caylent-dev-1='ssh dev-1.staging.caylent.io'
+#alias caylent-docker-1='ssh docker-1.prod.caylent.io'
 
-alias caylent-staging='ssh-personal stefan@54.172.56.138'
-alias caylent-staging-2='ssh-personal stefan@54.209.152.164'
-alias caylent-staging-3='ssh-personal stefan@54.86.139.176'
-alias caylent-prod='ssh-personal stefan@184.72.66.210'
-alias caylent-prod-2='ssh-personal stefan@34.207.101.45'
-alias caylent-prod-3='ssh-personal stefan@52.71.47.14'
-alias caylent-blog='ssh ubuntu@54.88.177.184'
-alias api='cd ~/caylent/api'
-alias api-vi='api && vi'
+#alias caylent-staging='ssh-personal stefan@54.172.56.138'
+#alias caylent-staging-2='ssh-personal stefan@54.209.152.164'
+#alias caylent-staging-3='ssh-personal stefan@54.86.139.176'
+#alias caylent-prod='ssh-personal stefan@184.72.66.210'
+#alias caylent-prod-2='ssh-personal stefan@34.207.101.45'
+#alias caylent-prod-3='ssh-personal stefan@52.71.47.14'
+#alias caylent-blog='ssh ubuntu@54.88.177.184'
+#alias api='cd ~/caylent/api'
+#alias api-vi='api && vi'
 
 alias tink='docker exec -it local /usr/share/nginx/html/artisan tinker'
 alias dc-local-exec='docker exec -it local '
@@ -152,20 +152,20 @@ alias dc-local-laravel-log="docker exec -it local bash -c 'tail -n 5000 -f -s 1 
 #alias dc-rm-old-containers="docker rm $(docker ps -a -q)"
 #alias dc-rm-images="docker rmi $(docker images -q --filter 'dangling=true')"
 alias stmux='TERM=screen-256color-bce tmux attach -t stefan'
-alias juliatmux='tmux attach -t julia'
+#alias juliatmux='tmux attach -t julia'
 alias demotmux='TERM=screen-256color-bce tmux attach -t demo'
 alias clearchat='ClearChat & disown'
 
 #Use a docker build to push the frontend to an S3 need to append build name to the end
-alias frontend-push-st="docker run -e BUCKET=$BUCKET -e ACCESS_KEY=$ACCESS_KEY -e SECRET_KEY=$SECRET_KEY -e REGION=$REGION -it "
-alias frontend-push-prod="docker run -e BUCKET=$BUCKETPROD -e ACCESS_KEY=$ACCESSPROD -e SECRET_KEY=$SECRETPROD -e REGION=$REGION -it "
-alias frontend-push-stage="docker run -e BUCKET=$BUCKETSTAG -e ACCESS_KEY=$ACCESSSTAG -e SECRET_KEY=$SECRETSTAG -e REGION=$REGION -it " 
+#alias frontend-push-st="docker run -e BUCKET=$BUCKET -e ACCESS_KEY=$ACCESS_KEY -e SECRET_KEY=$SECRET_KEY -e REGION=$REGION -it "
+#alias frontend-push-prod="docker run -e BUCKET=$BUCKETPROD -e ACCESS_KEY=$ACCESSPROD -e SECRET_KEY=$SECRETPROD -e REGION=$REGION -it "
+#alias frontend-push-stage="docker run -e BUCKET=$BUCKETSTAG -e ACCESS_KEY=$ACCESSSTAG -e SECRET_KEY=$SECRETSTAG -e REGION=$REGION -it " 
 
-alias vpn-electronifie='sudo openvpn --config /home/st/caylent/clients/electronifie/vpn/client.ovpn --auth-user-pass ~/.openvpn/electronifie'
-alias vpn-london='cd /home/st/ipvanish && sudo openvpn --config /home/st/ipvanish/ipvanish-UK-London-lon-a01.ovpn --auth-user-pass ~/.openvpn/ipvanish'
-alias caylent-starter='starter -g dockerfile,service,docker-compose -templates /home/st/gocode/src/github.com/caylent/starter/templates/'
-alias caylent-prod-publish='cd /home/st/caylent/postman && newman run caylent-manual-deployment.postman_collection.json -e caylent-developer-production-deployment-details.json'
-alias caylent-staging-publish='cd /home/st/caylent/postman && newman run caylent-manual-deployment.postman_collection.json -e caylent-development-staging-deployment-details.json'
+#alias vpn-electronifie='sudo openvpn --config /home/st/caylent/clients/electronifie/vpn/client.ovpn --auth-user-pass ~/.openvpn/electronifie'
+#alias vpn-london='cd /home/st/ipvanish && sudo openvpn --config /home/st/ipvanish/ipvanish-UK-London-lon-a01.ovpn --auth-user-pass ~/.openvpn/ipvanish'
+#alias caylent-starter='starter -g dockerfile,service,docker-compose -templates /home/st/gocode/src/github.com/caylent/starter/templates/'
+#alias caylent-prod-publish='cd /home/st/caylent/postman && newman run caylent-manual-deployment.postman_collection.json -e caylent-developer-production-deployment-details.json'
+#alias caylent-staging-publish='cd /home/st/caylent/postman && newman run caylent-manual-deployment.postman_collection.json -e caylent-development-staging-deployment-details.json'
 
 # python shortcuts
 alias venv='source ./bin/activate'
