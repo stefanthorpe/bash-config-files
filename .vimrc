@@ -210,18 +210,6 @@ endif
 " %#HighlightGroup#
 set statusline=%<[%n]\ %F\ %m%r%y\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}\ %=%-14.(%l,%c%V%)\ %P
 silent! if emoji#available()
-  function! S_fugitive()
-    if !exists('g:loaded_fugitive')
-      return ''
-    endif
-    let head = fugitive#head()
-    let master = head == 'master' ? emoji#for('crown') : ''
-    if empty(head)
-      return ''
-    else
-      return master.head
-    endif
-  endfunction
 
   let s:braille = split('"⠉⠒⠤⣀', '\zs')
   function! Braille()
@@ -245,12 +233,11 @@ silent! if emoji#available()
   function! MyStatusLine()
     let mod = '%{S_modified()}'
     let ro  = "%{&readonly ? emoji#for('lock') . ' ' : ''}"
-    let fug = ' %{S_fugitive()}'
     let sep = ' %= '
     let pos = ' %l,%c%V '
     let pct = ' %P '
 
-    return '[%n] %F %<'.mod.ro.fug.sep.pos.'%{Braille()}%*'.pct
+    return '[%n] %F %<'.mod.ro.sep.pos.'%{Braille()}%*'.pct
   endfunction
 
   " Note that the "%!" expression is evaluated in the context of the
@@ -330,14 +317,14 @@ endif
 
 " Keep the cursor on the same column
 set nostartofline
-
+let g:solarized_termcolors=256
 if has('gui_running')
  set guifont=Monospace\ 12
   set background=dark
-  silent! colo solarized
+  silent! colorscheme solarized
 else
   set background=dark
-  silent! colo solarized
+  silent! colorscheme solarized
 endif
 
 " }}}
@@ -1770,7 +1757,7 @@ let python_highlight_all = 1
 let g:python_pep8_indent_multiline_string = 1
 nnoremap <Leader>wn :match ExtraWhitespace /^\s* \s*\<Bar>\s\+$/<CR>
 nnoremap <Leader>wf :match<CR>
-highlight ExtraWhitespace ctermbg=0 guibg=0
+"highlight ExtraWhitespace ctermbg=0 guibg=0
 
 " ===========================================================================
 " vim-yaml config
