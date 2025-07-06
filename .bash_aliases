@@ -5,49 +5,77 @@ if [ $UID -ne 0 ]; then
     # distro specific  - Debian / Ubuntu and friends #
     # install with apt-get
     alias apt-get="sudo apt-get"
-    alias install="sudo apt-get install"
-    alias remove="sudo apt-get remove"
+    alias install="sudo apt-get install" # Install packages with apt
+    alias remove="sudo apt-get remove" # Remove packages with apt
     alias updatey="sudo apt-get --yes"
-    alias upgrade='sudo apt-get upgrade'
+    alias upgrade='sudo apt-get upgrade' # Upgrade all system packages
 fi
 
 ## Colorize the ls output ##
-alias ls='ls --color=auto'
+alias ls='ls --color=auto' # List files with colors
  
 ## Use a long listing format ##
-alias ll='ls -la'
+alias ll='ls -la' # Long listing format with details
  
 ## Show hidden files ##
-alias l.='ls -d .* --color=auto'
+alias l.='ls -d .* --color=auto' # Show hidden files starting with dot
 
 ## get rid of command not found ##
-alias cd..='cd ..'
+alias cd..='cd ..' # Go up one directory (typo-safe)
  
 ## a quick way to get out of current directory ##
-alias ..='cd ..'
-alias ...='cd ../../'
-alias .3='cd ../../../'
-alias .4='cd ../../../../'
-alias .5='cd ../../../../../'
+alias ..='cd ..' # Go up one directory level
+alias ...='cd ../../' # Go up two directory levels
+alias .3='cd ../../../' # Go up three directory levels
+alias .4='cd ../../../../' # Go up four directory levels
+alias .5='cd ../../../../../' # Go up five directory levels
 
 # handy short cuts 
-alias h='history'
-alias hg='history | grep'
-alias j='jobs -l'
+alias h='history' # Show command history
+alias hg='history | grep' # Search command history
+alias j='jobs -l' # Show active jobs
 
 ## Colorize the grep command output for ease of use (good for log files)##
-alias grep='grep -n --color=auto'
+alias grep='grep -n --color=auto' # Grep with line numbers and colors
 alias grepNoCount='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # Stop after sending count ECHO_REQUEST packets #
-alias ping='ping -c 5'
+alias ping='ping -c 5' # Ping with 5 packets limit
 # Do not wait interval 1 second, go fast #
-alias fastping='ping -c 100 -s.2'
+alias fastping='ping -c 100 -s.2' # Fast ping with 100 packets
 
 #show a list of ports and listens
-alias ports='netstat -tulanp'
+alias ports='netstat -tulanp' # Show all listening ports
+
+# Git shortcuts based on your usage patterns
+alias gs='git status' # Quick git status
+alias gp='git push' # Quick git push
+alias ga='git add' # Quick git add
+alias gc='git commit -m' # Quick commit with message
+alias gco='git checkout' # Quick checkout
+alias gcb='git checkout -b' # Create and checkout new branch
+alias gd='git diff' # Quick git diff
+alias gl='git log --oneline' # Compact git log
+
+# Navigation shortcuts you use frequently
+alias cdg='cd ~/git' # Quick jump to git directory
+alias cdd='cd ~/git/data' # Quick jump to data directory
+alias cdc='cd ~/.claude' # Quick jump to claude config
+
+# Docker shortcuts since you use it
+alias dv='docker version' # Check docker version
+alias dr='docker run' # Quick docker run
+alias ds='sudo systemctl status docker' # Check docker service
+
+# DBT/Development shortcuts
+alias cdbt='cd ~/git/data/src/dbt' # Quick jump to dbt directory
+alias cdbtp='cd ~/git/data/src/dbt/projects' # Jump to dbt projects
+
+# System shortcuts
+alias pkg='dpkg -l | grep ^ii | awk "{print \$2}"' # List installed packages
+alias reload='source ~/.bashrc' # Reload bash config
 
 ## shortcut  for iptables and pass it via sudo#
 alias ipt='sudo /sbin/iptables'
