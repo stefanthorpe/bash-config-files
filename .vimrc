@@ -132,6 +132,13 @@ endif
 
 " }}}
 " ============================================================================
+" COLOR SETTINGS {{{
+" ============================================================================
+set t_Co=256
+let g:solarized_termcolors=16
+
+" }}}
+" ============================================================================
 " BASIC SETTINGS {{{
 " ============================================================================
 
@@ -214,7 +221,7 @@ silent! if emoji#available()
     if !exists('g:loaded_fugitive')
       return ''
     endif
-    let head = fugitive#head()
+    let head = FugitiveHead()
     let master = head == 'master' ? emoji#for('crown') : ''
     if empty(head)
       return ''
@@ -437,6 +444,15 @@ noremap <leader>gr :Gremove<cr>
 noremap <leader>gs :Gstatus<cr>
 noremap <leader>ga :Gwrite<cr>
 noremap <leader>gg :w<cr>:Gwrite<cr>:Gcommit -m 'update'<cr>:Git push<cr><cr>:e<cr>
+
+" Claude Code integration
+nnoremap <leader>ca :!claude "Analyze this file: %"<cr>
+nnoremap <leader>cr :!claude "Review this code for improvements: %"<cr>
+nnoremap <leader>co :Claude<cr>
+
+" Open Claude in split window
+command! Claude split | terminal ++curwin claude
+command! ClaudeBot botright split | terminal ++curwin claude
 hi Cursor ctermfg=red ctermbg=white
 map <S-W> <Plug>CamelCaseMotion_w
 map <S-B> <Plug>CamelCaseMotion_b
@@ -1770,7 +1786,7 @@ let python_highlight_all = 1
 let g:python_pep8_indent_multiline_string = 1
 nnoremap <Leader>wn :match ExtraWhitespace /^\s* \s*\<Bar>\s\+$/<CR>
 nnoremap <Leader>wf :match<CR>
-highlight ExtraWhitespace ctermbg=0 guibg=0
+highlight ExtraWhitespace ctermbg=1 guibg=red
 
 " ===========================================================================
 " vim-yaml config
