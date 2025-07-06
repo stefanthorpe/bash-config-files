@@ -124,6 +124,81 @@ test_safe_aliases() {
     done
 }
 
+# Test random alias reminder script
+test_random_reminder() {
+    run_test "Random alias reminder functionality"
+    
+    # Test script exists and is executable
+    assert_file_exists "random_alias_reminder.sh" "random_alias_reminder.sh exists"
+    
+    if [ -x "random_alias_reminder.sh" ]; then
+        echo -e "${GREEN}✓${NC} random_alias_reminder.sh is executable"
+        TESTS_PASSED=$((TESTS_PASSED + 1))
+    else
+        echo -e "${RED}✗${NC} random_alias_reminder.sh is not executable"
+        TESTS_FAILED=$((TESTS_FAILED + 1))
+    fi
+    TESTS_RUN=$((TESTS_RUN + 1))
+    
+    # Test script runs without errors
+    if timeout 5 ./random_alias_reminder.sh >/dev/null 2>&1; then
+        echo -e "${GREEN}✓${NC} random_alias_reminder.sh runs without errors"
+        TESTS_PASSED=$((TESTS_PASSED + 1))
+    else
+        echo -e "${RED}✗${NC} random_alias_reminder.sh has execution errors"
+        TESTS_FAILED=$((TESTS_FAILED + 1))
+    fi
+    TESTS_RUN=$((TESTS_RUN + 1))
+    
+    # Test script produces output
+    output=$(timeout 5 ./random_alias_reminder.sh 2>/dev/null || echo "")
+    if [[ -n "$output" ]]; then
+        echo -e "${GREEN}✓${NC} random_alias_reminder.sh produces output"
+        TESTS_PASSED=$((TESTS_PASSED + 1))
+    else
+        echo -e "${RED}✗${NC} random_alias_reminder.sh produces no output"
+        TESTS_FAILED=$((TESTS_FAILED + 1))
+    fi
+    TESTS_RUN=$((TESTS_RUN + 1))
+    
+    # Test both alias and vim tips can be generated
+    alias_found=false
+    vim_found=false
+    
+    for i in {1..10}; do
+        output=$(timeout 5 ./random_alias_reminder.sh 2>/dev/null || echo "")
+        if [[ "$output" == *"Alias Tip"* ]]; then
+            alias_found=true
+        fi
+        if [[ "$output" == *"Vim Tip"* ]]; then
+            vim_found=true
+        fi
+        
+        # Break early if we found both
+        if $alias_found && $vim_found; then
+            break
+        fi
+    done
+    
+    if $alias_found; then
+        echo -e "${GREEN}✓${NC} Alias tips are generated"
+        TESTS_PASSED=$((TESTS_PASSED + 1))
+    else
+        echo -e "${RED}✗${NC} No alias tips found in 10 attempts"
+        TESTS_FAILED=$((TESTS_FAILED + 1))
+    fi
+    TESTS_RUN=$((TESTS_RUN + 1))
+    
+    if $vim_found; then
+        echo -e "${GREEN}✓${NC} Vim tips are generated"
+        TESTS_PASSED=$((TESTS_PASSED + 1))
+    else
+        echo -e "${RED}✗${NC} No vim tips found in 10 attempts"
+        TESTS_FAILED=$((TESTS_FAILED + 1))
+    fi
+    TESTS_RUN=$((TESTS_RUN + 1))
+}
+
 # Run all alias tests
 main() {
     echo "Testing Bash Aliases Configuration"
@@ -134,6 +209,7 @@ main() {
     test_alias_expansion
     test_conditional_aliases
     test_safe_aliases
+    test_random_reminder
     
     print_results
 }
