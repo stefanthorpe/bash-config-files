@@ -11,7 +11,7 @@ readonly NC='\033[0m' # No Color
 
 # Configuration paths
 readonly CONFIG_DIR="$(dirname "${BASH_SOURCE[0]}")"
-readonly VIM_README="${CONFIG_DIR}/VIM_CONFIG_README.md"
+readonly VIM_README="${CONFIG_DIR}/VIM_CONFIG_README_v2.md"
 readonly BASH_ALIASES="$HOME/.bash_aliases"
 
 # Function to show random alias tip
@@ -38,22 +38,46 @@ show_alias_tip() {
 # Function to show random vim tip
 show_vim_tip() {
     if [ -f "$VIM_README" ]; then
-        # Extract vim tooltips
-        mapfile -t vim_tips < <(grep -o 'TOOLTIP:[^:]*:[^-]*' "$VIM_README" | sed 's/TOOLTIP://')
+        # First try to get structured TIP comments
+        mapfile -t tip_comments < <(grep -o 'TIP:[^:]*:[^:]*:[^-]*' "$VIM_README" 2>/dev/null)
         
-        if [ ${#vim_tips[@]} -gt 0 ]; then
-            # Pick random vim tip
-            random_tip=${vim_tips[$RANDOM % ${#vim_tips[@]}]}
+        # Then get table shortcuts as backup
+        mapfile -t table_shortcuts < <(grep -E '^\|.*`.*`.*\|.*\|.*\|.*\|' "$VIM_README" | grep -v "Shortcut.*Action.*Workflow" | head -20)
+        
+        # Combine both sources
+        all_tips=("${tip_comments[@]}" "${table_shortcuts[@]}")
+        
+        if [ ${#all_tips[@]} -gt 0 ]; then
+            # Pick random tip
+            random_tip=${all_tips[$RANDOM % ${#all_tips[@]}]}
             
-            # Extract category and description
-            category=$(echo "$random_tip" | cut -d':' -f1)
-            description=$(echo "$random_tip" | cut -d':' -f2- | sed 's/^ *//')
-            
-            # Format category name for display
-            display_category=$(echo "$category" | tr '_' ' ' | tr '[:upper:]' '[:lower:]')
-            
-            echo -e "${CYAN}🔧 Vim Tip (${display_category}): ${description}${NC}"
-            return 0
+            # Check if it's a TIP comment or table row
+            if [[ "$random_tip" =~ ^TIP: ]]; then
+                # Handle TIP format: TIP:TYPE:SHORTCUT:DESCRIPTION
+                tip_type=$(echo "$random_tip" | cut -d':' -f2)
+                shortcut=$(echo "$random_tip" | cut -d':' -f3)
+                description=$(echo "$random_tip" | cut -d':' -f4- | sed 's/^ *//')
+                
+                if [[ -n "$shortcut" && -n "$description" ]]; then
+                    echo -e "${CYAN}🔧 Vim Tip (${tip_type}): ${shortcut} → ${description}${NC}"
+                    return 0
+                fi
+            else
+                # Handle table format: | shortcut | action | workflow | description |
+                IFS='|' read -ra FIELDS <<< "$random_tip"
+                if [ ${#FIELDS[@]} -ge 4 ]; then
+                    shortcut=$(echo "${FIELDS[1]}" | sed 's/.*`\([^`]*\)`.*/\1/' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+                    action=$(echo "${FIELDS[2]}" | sed 's/\*\*//g' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+                    workflow=$(echo "${FIELDS[3]}" | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+                    description=$(echo "${FIELDS[4]}" | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+                    
+                    # Filter for good shortcuts
+                    if [[ -n "$shortcut" && -n "$description" && ${#shortcut} -le 15 && "$shortcut" != "Shortcut" ]]; then
+                        echo -e "${CYAN}🔧 Vim Shortcut: ${shortcut} → ${action} (${description})${NC}"
+                        return 0
+                    fi
+                fi
+            fi
         fi
     fi
     return 1
