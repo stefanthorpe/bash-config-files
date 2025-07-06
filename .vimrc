@@ -328,6 +328,7 @@ set complete-=i
 " mouse
 silent! set ttymouse=xterm2
 set mouse=a
+set ttymouse=xterm2
 
 " 80 chars/line
 set textwidth=0
