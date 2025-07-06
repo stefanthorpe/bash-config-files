@@ -115,6 +115,7 @@ done
 echo "📦 Installing npm global packages..."
 NPM_PACKAGES=(
     "@anthropic-ai/claude-code"
+    "@devcontainers/cli"
 )
 
 for package in "${NPM_PACKAGES[@]}"; do
