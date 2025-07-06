@@ -125,3 +125,17 @@ complete -C '~/.local/bin/aws_completer' aws
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [ -f /home/st/node_modules/tabtab/.completions/sls.bash ] && . /home/st/node_modules/tabtab/.completions/sls.bash
+
+# Random alias reminder
+[ -f ~/git/bash-config-files/random_alias_reminder.sh ] && . ~/git/bash-config-files/random_alias_reminder.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/stefan/google-cloud-sdk/path.bash.inc' ]; then . '/home/stefan/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/stefan/google-cloud-sdk/completion.bash.inc' ]; then . '/home/stefan/google-cloud-sdk/completion.bash.inc'; fi
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
