@@ -11,7 +11,7 @@ readonly NC='\033[0m' # No Color
 
 # Configuration paths
 readonly CONFIG_DIR="$(dirname "${BASH_SOURCE[0]}")"
-readonly VIM_README="${CONFIG_DIR}/VIM_CONFIG_README_v2.md"
+readonly VIM_README="${CONFIG_DIR}/VIM_CONFIG_README.md"
 readonly BASH_ALIASES="$HOME/.bash_aliases"
 
 # Function to show random alias tip

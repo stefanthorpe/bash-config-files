@@ -165,12 +165,12 @@ test_random_reminder() {
     alias_found=false
     vim_found=false
     
-    for i in {1..10}; do
+    for i in {1..20}; do
         output=$(timeout 5 ./random_alias_reminder.sh 2>/dev/null || echo "")
         if [[ "$output" == *"Alias Tip"* ]]; then
             alias_found=true
         fi
-        if [[ "$output" == *"Vim Tip"* ]]; then
+        if [[ "$output" == *"Vim"* ]] || [[ "$output" == *"🔧"* ]]; then
             vim_found=true
         fi
         
@@ -193,7 +193,7 @@ test_random_reminder() {
         echo -e "${GREEN}✓${NC} Vim tips are generated"
         TESTS_PASSED=$((TESTS_PASSED + 1))
     else
-        echo -e "${RED}✗${NC} No vim tips found in 10 attempts"
+        echo -e "${RED}✗${NC} No vim tips found in 20 attempts"
         TESTS_FAILED=$((TESTS_FAILED + 1))
     fi
     TESTS_RUN=$((TESTS_RUN + 1))

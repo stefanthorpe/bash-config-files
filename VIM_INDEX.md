@@ -6,7 +6,7 @@ Quick navigation index for the comprehensive vim configuration documentation.
 
 | File | Purpose | Description |
 |------|---------|-------------|
-| [VIM_CONFIG_README.md](./VIM_CONFIG_README.md) | **Main Documentation** | Complete reference with all plugins, mappings, and features |
+| [VIM_CONFIG_README.md](./VIM_CONFIG_README.md) | **Main Documentation** | 🚀 Workflow-based guide with actionable shortcuts and learning paths |
 | [VIM_INDEX.md](./VIM_INDEX.md) | **Quick Index** | This navigation file |
 | [vim_tooltip_extractor.sh](./vim_tooltip_extractor.sh) | **Tooltip Tool** | Extract and manage documentation tooltips |
 | [.vimrc](./.vimrc) | **Configuration** | The actual vim configuration file |
