@@ -55,6 +55,16 @@ A collection of shell and vim configuration files for Linux/Unix systems, provid
    vim +PlugInstall +qall
    ```
 
+## Testing
+
+To verify your configuration files are working correctly, run the test suite:
+
+```bash
+./run_tests.sh
+```
+
+This will test all configuration files and ensure they are properly formatted and functional.
+
 ## Customization
 
 Feel free to modify these configuration files to suit your needs. The files are well-commented to help you understand and customize the settings.
