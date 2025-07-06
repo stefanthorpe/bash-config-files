@@ -17,8 +17,8 @@ readonly BASH_ALIASES="$HOME/.bash_aliases"
 # Function to show random alias tip
 show_alias_tip() {
     if [ -f "$BASH_ALIASES" ]; then
-        # Get alias lines with descriptions
-        mapfile -t alias_lines < <(grep "^alias.*#" "$BASH_ALIASES" | sed 's/^[[:space:]]*//')
+        # Get alias lines with descriptions (without line numbers)
+        mapfile -t alias_lines < <(grep "^alias.*#" "$BASH_ALIASES")
         
         if [ ${#alias_lines[@]} -gt 0 ]; then
             # Pick random alias line
